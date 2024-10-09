@@ -8,10 +8,10 @@ const Header = () => {
         <Image src="/images/logo.png" alt="Description" width={50} height={50} className="mr-14 opacity-45" />
       </Link>
       <nav className="flex space-x-10 font-color">
-        <Link href="/">Home</Link>
-        <Link href="/">Nuestra Firma</Link>
-        <Link href="/">Servicios</Link>
-        <Link href="/">Contacto</Link>
+        <Link href="/" className='hover:opacity-75 text-sm'>Home</Link>
+        <Link href="/nuestra_firma" className='hover:opacity-75 text-sm'>Nuestra Firma</Link>
+        <Link href="/servicios" className='hover:opacity-75 text-sm'>Servicios</Link>
+        <Link href="/contacto" className='hover:opacity-75 text-sm'>Contacto</Link>
       </nav>
     </header>
   );
