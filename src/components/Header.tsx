@@ -7,7 +7,7 @@ const Header = () => {
       <Link href="/" className="flex items-center">
         <Image src="/images/logo.png" alt="Description" width={50} height={50} className="mr-14 opacity-45" />
       </Link>
-      <nav className="flex space-x-10 font-color">
+      <nav className="flex space-x-16 font-color">
         <Link href="/" className='hover:opacity-75 text-sm'>Home</Link>
         <Link href="/nuestra_firma" className='hover:opacity-75 text-sm'>Nuestra Firma</Link>
         <Link href="/servicios" className='hover:opacity-75 text-sm'>Servicios</Link>

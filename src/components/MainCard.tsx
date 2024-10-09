@@ -7,7 +7,7 @@ const MainCard = () => {
       <Header />
 
       {/* Contenido principal */}
-      <div className="flex flex-col justify-end flex-grow p-12">
+      <div className="flex flex-col justify-end flex-grow p-16">
         <h2 className="text-xl text-white py-3">*Quiénes somos ?</h2>
         <h1 className="text-white text-7xl">Total Access n' Logistics</h1>
       </div>
