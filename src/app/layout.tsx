@@ -40,7 +40,7 @@ export default function RootLayout({
       >
         <div className="md:flex h-screen">
           {/* Contenedor izquierdo para el contenido */}
-          <div className="md:flex-1 md:pb-8">
+          <div className="md:flex-1 md:pb-10 md:m-4">
             {children}
           </div>
           
