@@ -24,7 +24,7 @@ const nanumMyeongjoExtraBold = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Total Access soluciones migratiorias",
+  title: "Total Access - Soluciones migratiorias",
   description: "Soluciones migratorias y de aduana en Argentina",
 };
 
