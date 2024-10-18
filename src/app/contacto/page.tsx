@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useFormState } from "react-dom";
 import { printTextAction } from "./actions";
 import { AiOutlineAlert } from "react-icons/ai";
@@ -12,13 +12,27 @@ export default function Contacto() {
   const [state, formAction] = useFormState(printTextAction, {
     errors: { nombre: undefined, email: undefined, consulta: undefined },
   });
+  const [result, serResult] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const sendEmail = () => {
+    setLoading(true);
+    fetch('/api/emails', {
+      method: 'POST',
+    })
+    .then((response) => response.json())
+    .then((data) => serResult(data))
+    .catch((error) => console.error(error))
+    .finally(() => setLoading(false));
+  }
+
 
   return (
     <div className="flex flex-col justify-between h-screen md:h-full w-full main-card bg-gray-900 p-6 md:m-4">
       {/* Header */}
       <Header />
 
-      <div className="lg:p-16">
+      <div className="sm:p-16">
         <h1 className="text-6xl lg:text-7xl text-white leading-tight mb-5">
           Contacto*
         </h1>
@@ -87,6 +101,8 @@ export default function Contacto() {
           </div>
 
           <button
+            disabled={loading}
+            onClick={sendEmail}
             type="submit"
             className="text-2xl font-color bg-gray-200 shadow-lg rounded p-2 mt-10 w-1/2"
           >
