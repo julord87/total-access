@@ -2,30 +2,58 @@
 
 import React, { useState } from "react";
 import { useFormState } from "react-dom";
-import { printTextAction } from "./actions";
 import { AiOutlineAlert } from "react-icons/ai";
-
 import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
 
 export default function Contacto() {
-  const [state, formAction] = useFormState(printTextAction, {
-    errors: { nombre: undefined, email: undefined, consulta: undefined },
+  const [state, formAction] = useFormState(
+    (state) => ({ errors: { nombre: undefined, email: undefined, consulta: undefined } }),
+    {
+      errors: { nombre: undefined, email: undefined, consulta: undefined },
+    }
+  );
+
+  // Estado para los inputs
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    consulta: "",
   });
-  const [result, serResult] = useState<Record<string, string>>({});
+  const [result, setResult] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(false);
 
-  const sendEmail = () => {
-    setLoading(true);
-    fetch('/api/emails', {
-      method: 'POST',
-    })
-    .then((response) => response.json())
-    .then((data) => serResult(data))
-    .catch((error) => console.error(error))
-    .finally(() => setLoading(false));
-  }
+  // Manejar cambios en los inputs
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
+  // Enviar email
+  const sendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Enviar los datos del formulario
+      });
+
+      const data = await response.json();
+      setResult(data);
+    } catch (error) {
+      console.error("Error al enviar el correo:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col justify-between h-screen md:h-full w-full main-card bg-gray-900 p-6 md:m-4">
@@ -38,7 +66,7 @@ export default function Contacto() {
         </h1>
 
         {/* Contenido principal */}
-        <form action={formAction}>
+        <form onSubmit={sendEmail}>
           <div className="flex flex-col">
             {/* Nombre */}
             <label htmlFor="nombre" className="font-color">
@@ -50,6 +78,8 @@ export default function Contacto() {
               }`}
               id="nombre"
               name="nombre"
+              value={formData.nombre}
+              onChange={handleInputChange}
               placeholder="Escriba su nombre"
             />
             {state.errors.nombre && (
@@ -69,6 +99,8 @@ export default function Contacto() {
               }`}
               id="email"
               name="email"
+              value={formData.email}
+              onChange={handleInputChange}
               placeholder="Escriba su correo electrónico"
               type="email"
             />
@@ -89,6 +121,8 @@ export default function Contacto() {
               }`}
               id="consulta"
               name="consulta"
+              value={formData.consulta}
+              onChange={handleInputChange}
               rows={4}
               placeholder="Escriba su consulta"
             />
@@ -102,13 +136,17 @@ export default function Contacto() {
 
           <button
             disabled={loading}
-            onClick={sendEmail}
             type="submit"
             className="text-2xl font-color bg-gray-200 shadow-lg rounded p-2 mt-10 w-1/2"
           >
-            Enviar
+            {loading ? "Enviando..." : "Enviar"}
           </button>
         </form>
+
+        {/* Mostrar resultado de la consulta */}
+        {result.message && (
+          <div className="text-white mt-4">{result.message}</div>
+        )}
       </div>
 
       {/* Footer */}

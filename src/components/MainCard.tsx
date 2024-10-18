@@ -10,7 +10,7 @@ const MainCard = () => {
 
       {/* Contenido principal */}
       <div className="flex flex-col justify-end flex-grow p-6 lg:p-16">
-        <h1 className="text-6xl lg:text-7xl text-white leading-tight">Total Access n' Logistics</h1>
+        <h1 className="text-6xl lg:text-7xl text-white leading-tight">Total Access & Logistics</h1>
         <Link href={"/nuestra_firma"} className="text-lg lg:text-xl text-white py-3 mt-2">*Quiénes somos ?</Link>
       </div>
 
