@@ -55,14 +55,16 @@ export default function Contacto() {
     }
   };
 
+  const [language, setLanguage] = useState("EN");
+
   return (
     <div className="flex flex-col justify-between h-screen md:h-full w-full main-card bg-gray-900 p-6 md:m-4">
       {/* Header */}
-      <Header />
+      <Header language={language} setLanguage={setLanguage} />
 
       <div className="sm:p-16">
         <h1 className="text-6xl lg:text-7xl text-white leading-tight mb-5">
-          Contacto*
+          {language === "EN" ? "Contact Us*" : language === "CH" ? "联系我们" : "Contacto*"}
         </h1>
 
         {/* Contenido principal */}
@@ -70,7 +72,7 @@ export default function Contacto() {
           <div className="flex flex-col">
             {/* Nombre */}
             <label htmlFor="nombre" className="font-color">
-              Nombre
+              {language === "EN" ? "Name" : language === "CH" ? "名字" : "Nombre"}
             </label>
             <input
               className={`bg-gray-300 w-1/2 p-2 rounded ${
@@ -80,7 +82,8 @@ export default function Contacto() {
               name="nombre"
               value={formData.nombre}
               onChange={handleInputChange}
-              placeholder="Escriba su nombre"
+              placeholder={language === "EN" ? "Your name" : language === "CH" ? "输入您的名字" : "Escriba su nombre"}
+              type="text"
             />
             {state.errors.nombre && (
               <span className="text-red-700 flex items-center text-xs mt-1">
@@ -91,7 +94,7 @@ export default function Contacto() {
 
             {/* Email */}
             <label htmlFor="email" className="font-color mt-6">
-              Email
+              {language === "EN" ? "Email" : language === "CH" ? "邮箱" : "Email"}
             </label>
             <input
               className={`bg-gray-300 w-1/2 p-2 rounded ${
@@ -101,7 +104,7 @@ export default function Contacto() {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="Escriba su correo electrónico"
+              placeholder={language === "EN" ? "Your email" : language === "CH" ? "输入您的邮箱" : "Escriba su correo"}
               type="email"
             />
             {state.errors.email && (
@@ -113,7 +116,7 @@ export default function Contacto() {
 
             {/* Consulta */}
             <label htmlFor="consulta" className="font-color mt-6">
-              Consulta
+              {language === "EN" ? "Message" : language === "CH" ? "留言" : "Consulta"}
             </label>
             <textarea
               className={`bg-gray-300 p-2 rounded ${
@@ -124,7 +127,7 @@ export default function Contacto() {
               value={formData.consulta}
               onChange={handleInputChange}
               rows={4}
-              placeholder="Escriba su consulta"
+              placeholder={language === "EN" ? "Write your message" : language === "CH" ? "输入您的留言" : "Escriba su consulta"}
             />
             {state.errors.consulta && (
               <span className="text-red-700 flex items-center text-xs mt-1">
@@ -139,7 +142,7 @@ export default function Contacto() {
             type="submit"
             className="text-2xl font-color bg-gray-200 shadow-lg rounded p-2 mt-10 w-1/2"
           >
-            {loading ? "Enviando..." : "Enviar"}
+            {loading ? "Sending..." : language === "EN" ? "Send" : language === "CH" ? "发送" : "Enviar"}
           </button>
         </form>
 
@@ -150,7 +153,7 @@ export default function Contacto() {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Footer language={language}/>
     </div>
   );
 }

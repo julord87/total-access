@@ -28,7 +28,7 @@ const MainCard = () => {
       </div>
 
       {/* Footer */}
-      <Footer />
+      <Footer language={language}/>
     </div>
   );
 };
