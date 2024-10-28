@@ -38,9 +38,9 @@ export default function RootLayout({
       <body
         className={`${nanumMyeongjoRegular.variable} ${nanumMyeongjoBold.variable} ${nanumMyeongjoExtraBold.variable} antialiased`}
       >
-        <div className="md:flex h-screen">
+        <div className="lg:flex h-screen">
           {/* Contenedor izquierdo para el contenido */}
-          <div className="md:flex-1 md:pb-10 md:m-4">
+          <div className="lg:flex-1 lg:pb-10 lg:m-4">
             {children}
           </div>
           

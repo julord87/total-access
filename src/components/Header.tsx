@@ -3,23 +3,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai"; // Iconos para el menú hamburguesa
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar la apertura del menú
+interface HeaderProps {
+  language: string;
+  setLanguage: (language: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false); // Estado para el menú de idiomas
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen); // Cambiar estado del menú
+    setIsOpen(!isOpen);
+  };
+
+  const toggleLanguageMenu = () => {
+    setLanguageMenuOpen(!languageMenuOpen);
   };
 
   return (
-    <header className="space-x-6 flex md:ml-8 items-center justify-between md:justify-normal p-4">
+    <header className="space-x-2 flex md:ml-8 items-center justify-between md:justify-normal p-4">
       {/* Logo */}
       <Link href="/" className="flex">
         <Image
           src="/images/bg.png"
           alt="Description"
-          width={40} // Tamaño reducido para pantallas móviles
+          width={40}
           height={40}
           className="mr-4 opacity-45"
         />
@@ -38,21 +48,45 @@ const Header = () => {
 
       {/* Navegación */}
       <nav
-        className={`lg:flex lg:space-x-10 font-color ${
+        className={`items-center lg:flex lg:space-x-10 font-color ${
           isOpen ? "block text-right" : "hidden"
         } lg:block absolute lg:static top-16 right-4 w-full lg:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
       >
-        <Link href="/" className="block py-2 lg:inline hover:opacity-75 text-sm">
-          Home
+        <Link
+          href="/"
+          className="block py-2 lg:inline hover:opacity-75 text-sm"
+        >
+          {language === "EN" ? "Home" : language === "CH" ? "主页" : "Inicio"}
         </Link>
-        <Link href="/nuestra_firma" className="block py-2 lg:inline hover:opacity-75 text-sm">
-          Nuestra Firma
+        <Link
+          href="/nuestra_firma"
+          className="block py-2 lg:inline hover:opacity-75 text-sm"
+        >
+          {language === "EN"
+            ? "Our Firm"
+            : language === "CH"
+            ? "我们的公司"
+            : "Nuestra Firma"}
         </Link>
-        <Link href="/servicios" className="block py-2 lg:inline hover:opacity-75 text-sm">
-          Servicios
+        <Link
+          href="/servicios"
+          className="block py-2 lg:inline hover:opacity-75 text-sm"
+        >
+          {language === "EN"
+            ? "Services"
+            : language === "CH"
+            ? "服务"
+            : "Servicios"}
         </Link>
-        <Link href="/contacto" className="block py-2 lg:inline hover:opacity-75 text-sm">
-          Contacto
+        <Link
+          href="/contacto"
+          className="block py-2 lg:inline hover:opacity-75 text-sm"
+        >
+          {language === "EN"
+            ? "Contact"
+            : language === "CH"
+            ? "联系"
+            : "Contacto"}
         </Link>
         <Link
           href="https://wa.me/5491138248813?text=Hola%21%20Quisiera%20realizar%20una%20consulta%20sobre%20sus%20servicios."
@@ -60,8 +94,55 @@ const Header = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Whatsapp
+          {language === "CH"
+            ? "微信"
+            : "WhatsApp"}
         </Link>
+
+        {/* Menú de idiomas */}
+        <div className="relative text-white font-color hover:opacity-75">
+          <button
+            onClick={toggleLanguageMenu}
+            aria-label="Toggle language menu"
+          >
+          {language === "EN"
+            ? "Language"
+            : language === "CH"
+            ? "语言"
+            : "Idioma"}
+          </button>
+          {languageMenuOpen && (
+            <div className="absolute right-0 mt-2 w-24 bg-gray-800 text-white rounded shadow-md z-20">
+              <button
+                onClick={() => {
+                  setLanguage("ES");
+                  setLanguageMenuOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-left hover:bg-gray-700"
+              >
+                ES
+              </button>
+              <button
+                onClick={() => {
+                  setLanguage("EN");
+                  setLanguageMenuOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-left hover:bg-gray-700"
+              >
+                EN
+              </button>
+              <button
+                onClick={() => {
+                  setLanguage("CH");
+                  setLanguageMenuOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-left hover:bg-gray-700"
+              >
+                中文
+              </button>
+            </div>
+          )}
+        </div>
       </nav>
     </header>
   );
