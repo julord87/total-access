@@ -1,3 +1,5 @@
+// src/components/Header.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -5,14 +7,17 @@ import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
+// Importa el tipo Language desde el store
+import type { Language } from "@/store/useLanguageStore";
+
 interface HeaderProps {
-  language: string;
-  setLanguage: (language: string) => void;
+  language: Language;  // Cambia string a Language
+  setLanguage: (language: Language) => void;  // Cambia string a Language
 }
 
 const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [languageMenuOpen, setLanguageMenuOpen] = useState(false); // Estado para el menú de idiomas
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -52,41 +57,17 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
           isOpen ? "block text-right" : "hidden"
         } lg:block absolute lg:static top-16 right-4 w-full lg:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
       >
-        <Link
-          href="/"
-          className="block py-2 lg:inline hover:opacity-75 text-sm"
-        >
-          {language === "EN" ? "Home" : language === "CH" ? "主页" : "Inicio"}
+        <Link href="/" className="block py-2 lg:inline hover:opacity-75 text-sm">
+          {language === "EN" ? "Home" : language === "ZH" ? "主页" : "Inicio"}
         </Link>
-        <Link
-          href="/nuestra_firma"
-          className="block py-2 lg:inline hover:opacity-75 text-sm"
-        >
-          {language === "EN"
-            ? "Our Firm"
-            : language === "CH"
-            ? "我们的公司"
-            : "Nuestra Firma"}
+        <Link href="/nuestra_firma" className="block py-2 lg:inline hover:opacity-75 text-sm">
+          {language === "EN" ? "Our Firm" : language === "ZH" ? "我们的公司" : "Nuestra Firma"}
         </Link>
-        <Link
-          href="/servicios"
-          className="block py-2 lg:inline hover:opacity-75 text-sm"
-        >
-          {language === "EN"
-            ? "Services"
-            : language === "CH"
-            ? "服务"
-            : "Servicios"}
+        <Link href="/servicios" className="block py-2 lg:inline hover:opacity-75 text-sm">
+          {language === "EN" ? "Services" : language === "ZH" ? "服务" : "Servicios"}
         </Link>
-        <Link
-          href="/contacto"
-          className="block py-2 lg:inline hover:opacity-75 text-sm"
-        >
-          {language === "EN"
-            ? "Contact"
-            : language === "CH"
-            ? "联系"
-            : "Contacto"}
+        <Link href="/contacto" className="block py-2 lg:inline hover:opacity-75 text-sm">
+          {language === "EN" ? "Contact" : language === "ZH" ? "联系" : "Contacto"}
         </Link>
         <Link
           href="https://wa.me/5491138248813?text=Hola%21%20Quisiera%20realizar%20una%20consulta%20sobre%20sus%20servicios."
@@ -94,28 +75,19 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {language === "CH"
-            ? "微信"
-            : "WhatsApp"}
+          {language === "ZH" ? "微信" : "WhatsApp"}
         </Link>
 
         {/* Menú de idiomas */}
         <div className="relative text-white font-color hover:opacity-75">
-          <button
-            onClick={toggleLanguageMenu}
-            aria-label="Toggle language menu"
-          >
-          {language === "EN"
-            ? "Language"
-            : language === "CH"
-            ? "语言"
-            : "Idioma"}
+          <button onClick={toggleLanguageMenu} aria-label="Toggle language menu">
+            {language === "EN" ? "Language" : language === "ZH" ? "语言" : "Idioma"}
           </button>
           {languageMenuOpen && (
             <div className="absolute right-0 mt-2 w-24 bg-gray-800 text-white rounded shadow-md z-20">
               <button
                 onClick={() => {
-                  setLanguage("ES");
+                  setLanguage("ES" as Language);  // Forzamos "ES" al tipo Language
                   setLanguageMenuOpen(false);
                 }}
                 className="block w-full px-4 py-2 text-left hover:bg-gray-700"
@@ -133,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
               </button>
               <button
                 onClick={() => {
-                  setLanguage("CH");
+                  setLanguage("ZH");
                   setLanguageMenuOpen(false);
                 }}
                 className="block w-full px-4 py-2 text-left hover:bg-gray-700"
