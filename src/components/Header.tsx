@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
       {/* Navegación: siempre visible a partir de md */}
       <nav
         className={`md:flex md:space-x-10 font-color ${
-          isOpen ? "block" : "hidden"
+          isOpen ? "block justify-items-end" : "hidden"
         } lg:block absolute md:static top-16 right-4 w-full md:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
       >
         <Link href="/" className="block py-2 lg:inline hover:opacity-75 text-sm">
