@@ -1,18 +1,14 @@
-// src/components/Header.tsx
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-
-// Importa el tipo Language desde el store
 import type { Language } from "@/store/useLanguageStore";
 
 interface HeaderProps {
-  language: Language;  // Cambia string a Language
-  setLanguage: (language: Language) => void;  // Cambia string a Language
+  language: Language;
+  setLanguage: (language: Language) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
@@ -41,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
       </Link>
 
       {/* Botón de menú hamburguesa en móviles */}
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <button onClick={toggleMenu} aria-label="Toggle menu">
           {isOpen ? (
             <AiOutlineClose className="text-2xl text-white" />
@@ -51,11 +47,11 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
         </button>
       </div>
 
-      {/* Navegación */}
+      {/* Navegación: siempre visible a partir de md */}
       <nav
-        className={`items-center lg:flex lg:space-x-10 font-color ${
-          isOpen ? "block text-right" : "hidden"
-        } lg:block absolute lg:static top-16 right-4 w-full lg:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
+        className={`md:flex md:space-x-10 font-color ${
+          isOpen ? "block" : "hidden"
+        } lg:block absolute md:static top-16 right-4 w-full md:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
       >
         <Link href="/" className="block py-2 lg:inline hover:opacity-75 text-sm">
           {language === "EN" ? "Home" : language === "ZH" ? "主页" : "Inicio"}
@@ -78,8 +74,8 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
           {language === "ZH" ? "微信" : "WhatsApp"}
         </Link>
 
-        {/* Menú de idiomas */}
-        <div className="relative text-white font-color hover:opacity-75">
+        {/* Menú de idiomas dentro de la misma navegación */}
+        <div className="relative py-2 lg:inline hover:opacity-75 text-sm font-color5">
           <button onClick={toggleLanguageMenu} aria-label="Toggle language menu">
             {language === "EN" ? "Language" : language === "ZH" ? "语言" : "Idioma"}
           </button>
@@ -87,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
             <div className="absolute right-0 mt-2 w-24 bg-gray-800 text-white rounded shadow-md z-20">
               <button
                 onClick={() => {
-                  setLanguage("ES" as Language);  // Forzamos "ES" al tipo Language
+                  setLanguage("ES" as Language);
                   setLanguageMenuOpen(false);
                 }}
                 className="block w-full px-4 py-2 text-left hover:bg-gray-700"

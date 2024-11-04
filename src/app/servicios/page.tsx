@@ -10,7 +10,7 @@ const Servicios = () => {
   const { language, setLanguage } = useLanguageStore();
 
   return (
-    <div className="flex flex-col justify-between h-screen md:h-full w-full main-card bg-gray-900 p-6 md:m-4">
+    <div className="flex flex-col justify-between h-screen lg:h-full w-full main-card bg-gray-900 p-6 lg:m-4">
       {/* Header */}
       <Header language={language} setLanguage={setLanguage} />
 
