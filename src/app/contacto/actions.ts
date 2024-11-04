@@ -1,9 +1,12 @@
-"use server";
+// src/app/contacto/actions.ts
 
-export async function printTextAction(previousState: any, formData: FormData) {
-  const nombre = String(formData.get("nombre"));
-  const email = String(formData.get("email"));
-  const consulta = String(formData.get("consulta"));
+"use server";
+import nodemailer from "nodemailer";
+
+export async function printTextAction(formData: FormData) {
+  const nombre = formData.get("nombre")?.toString() || "";
+  const email = formData.get("email")?.toString() || "";
+  const consulta = formData.get("consulta")?.toString() || "";
 
   const errors: { nombre?: string; email?: string; consulta?: string } = {};
 
@@ -25,5 +28,33 @@ export async function printTextAction(previousState: any, formData: FormData) {
     errors.consulta = "La consulta debe tener al menos 10 caracteres.";
   }
 
-  return { errors };
+  if (Object.keys(errors).length > 0) {
+    return { errors };
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: 587, // Cambia a 587
+    secure: false, // Usa STARTTLS en lugar de SSL
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+  
+
+  const mailOptions = {
+    from: `"Formulario de Contacto" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_USER,
+    subject: `Nuevo mensaje de ${nombre}`,
+    text: `Nombre: ${nombre}\nEmail: ${email}\nConsulta: ${consulta}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true };
+  } catch (error) {
+    console.error("Error enviando correo:", error);
+    return { errors: { global: "Hubo un problema enviando el mensaje. Inténtalo nuevamente." } };
+  }
 }
