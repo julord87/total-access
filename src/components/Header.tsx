@@ -72,7 +72,6 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
               : "https://wa.me/5491138248813?text=Hola%21%20Quisiera%20realizar%20una%20consulta%20sobre%20sus%20servicios."
           }
           className="block py-2 lg:inline hover:opacity-75 text-sm"
-          target="_blank"
           rel="noopener noreferrer"
         >
           {language === "ZH" ? "微信号" : "WhatsApp"}

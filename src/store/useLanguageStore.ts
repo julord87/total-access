@@ -1,7 +1,7 @@
 // src/store/useLanguageStore.ts
 import { create } from 'zustand';
 
-export type Language = 'EN' | 'ZH';
+export type Language = 'EN' | 'ZH' | 'ES'; // Agregar 'ES' al tipo Language
 
 interface LanguageState {
   language: Language;
