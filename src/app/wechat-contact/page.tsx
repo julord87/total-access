@@ -11,7 +11,7 @@ const WechatContact = () => {
   const { language, setLanguage } = useLanguageStore();
 
   return (
-    <div className="flex text-md flex-col justify-between h-screen lg:h-full w-full main-card bg-gray-900 p-2 lg:m-2">
+    <div className="flex flex-col justify-between h-screen lg:h-full w-full main-card bg-gray-900 p-6 lg:m-4">
       {/* Header */}
       <Header language={language} setLanguage={setLanguage} />
 
@@ -25,7 +25,7 @@ const WechatContact = () => {
           {language === "ZH"
             ? "感谢您对我们的服务感兴趣！您可以通过以下方式添加我们为好友，并随时咨询我们的服务信息："
             : language === "ES"
-            ? "¡Gracias por su interés en nuestros servicios! Puede agregarnos en WeChat usando las siguientes opciones para realizar consultas sobre nuestros servicios."
+            ? "Gracias por su interés en nuestros servicios! Puede agregarnos en WeChat usando las siguientes opciones para realizar consultas."
             : "Thank you for your interest in our services! You can add us on WeChat using the following options to inquire about our services."}
         </p>
 
@@ -38,7 +38,7 @@ const WechatContact = () => {
             {language === "ZH"
               ? `请在微信中搜索我们的微信号：${weChatId}，并发送好友请求。添加好友时，请注明您的需求，以便我们更好地为您服务。`
               : language === "ES"
-              ? `Busque nuestro ID de WeChat: ${weChatId} en la aplicación y envíe una solicitud de amistad. Por favor, mencione su solicitud para brindarle una mejor asistencia.`
+              ? `Busque nuestro ID de WeChat: ${weChatId} en la aplicación y envíe una solicitud de amistad.`
               : `Search for our WeChat ID: ${weChatId} in the WeChat app and send a friend request. Please mention your request for better assistance.`}
           </p>
         </div>
