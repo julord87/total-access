@@ -1,54 +1,42 @@
-import type { Metadata } from "next";
+// app/layout.tsx
+"use client";
+
+import { useEffect } from "react";
+import { useLanguageStore } from "@/store/useLanguageStore";
 import localFont from "next/font/local";
 import "./globals.css";
 
-// Cargar la fuente Regular
+// Cargar las fuentes
 const nanumMyeongjoRegular = localFont({
   src: "./fonts/NanumMyeongjo-Regular.ttf",
   variable: "--nanum-regular",
-  weight: "400",  // Regular
+  weight: "400",
 });
-
-// Cargar la fuente Bold
 const nanumMyeongjoBold = localFont({
   src: "./fonts/NanumMyeongjo-Bold.ttf",
   variable: "--nanum-bold",
-  weight: "700",  // Bold
+  weight: "700",
 });
-
-// Cargar la fuente ExtraBold
 const nanumMyeongjoExtraBold = localFont({
   src: "./fonts/NanumMyeongjo-ExtraBold.ttf",
   variable: "--nanum-extrabold",
-  weight: "800",  // ExtraBold
+  weight: "800",
 });
 
-export const metadata: Metadata = {
-  title: "Total Access - Soluciones migratiorias",
-  description: "Soluciones migratorias,logísticas y de aduana en Argentina",
-};
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const { language, setLanguage } = useLanguageStore();
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  useEffect(() => {
+    // Configurar el atributo de idioma en el elemento <html> según el idioma del store
+    document.documentElement.lang = language === "EN" ? "en" : language === "ZH" ? "zh" : "es";
+  }, [language]);
+
   return (
-    <html lang="en">
+    <html lang={language.toLowerCase()}>
       <body
         className={`${nanumMyeongjoRegular.variable} ${nanumMyeongjoBold.variable} ${nanumMyeongjoExtraBold.variable} antialiased`}
       >
-        <div className="lg:flex h-screen">
-          {/* Contenedor izquierdo para el contenido */}
-          <div className="lg:flex-1 lg:pb-10 lg:m-4">
-            {children}
-          </div>
-          
-          {/* Contenedor derecho para la imagen de fondo */}
-          <div className="relative flex-1">
-            <div className="absolute inset-0 bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/bg.png')" }}></div>
-          </div>
-        </div>
+        {children}
       </body>
     </html>
   );
