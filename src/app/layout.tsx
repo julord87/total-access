@@ -32,11 +32,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }, [language]);
 
   return (
-    <html lang={language.toLowerCase()}>
+    <html lang="en">
       <body
         className={`${nanumMyeongjoRegular.variable} ${nanumMyeongjoBold.variable} ${nanumMyeongjoExtraBold.variable} antialiased`}
       >
-        {children}
+        <div className="lg:flex h-screen">
+          {/* Contenedor izquierdo para el contenido */}
+          <div className="lg:flex-1 lg:pb-10 lg:m-4">
+            {children}
+          </div>
+          
+          {/* Contenedor derecho para la imagen de fondo */}
+          <div className="relative flex-1">
+            <div className="absolute inset-0 bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/bg.png')" }}></div>
+          </div>
+        </div>
       </body>
     </html>
   );

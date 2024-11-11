@@ -65,17 +65,23 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
         <Link href="/contacto" className="block py-2 lg:inline hover:opacity-75 text-sm">
           {language === "EN" ? "Contact" : language === "ZH" ? "联系" : "Contacto"}
         </Link>
-        <Link
-          href={
-            language === "ZH"
-              ? "/wechat-contact" // Página con el QR y las instrucciones para WeChat
-              : "https://wa.me/5491138248813?text=Hola%21%20Quisiera%20realizar%20una%20consulta%20sobre%20sus%20servicios."
-          }
+          <Link
+          href="https://wa.me/5491138248813?text=Hola%21%20Quisiera%20realizar%20una%20consulta%20sobre%20sus%20servicios."
           className="block py-2 lg:inline hover:opacity-75 text-sm"
           rel="noopener noreferrer"
+          target="_blank"
         >
-          {language === "ZH" ? "微信号" : "WhatsApp"}
+          {language === "ZH" ? "WhatsApp" : "WhatsApp"}
         </Link>
+        {language === "ZH" && (
+          <Link
+            href="/wechat-contact" // Página con el QR y las instrucciones para WeChat
+            className="block py-2 lg:inline hover:opacity-75 text-sm"
+            rel="noopener noreferrer"
+          >
+            微信号
+          </Link>
+        )}
 
         {/* Menú de idiomas dentro de la misma navegación */}
         <div className="relative py-2 lg:inline hover:opacity-75 text-sm font-color5">
