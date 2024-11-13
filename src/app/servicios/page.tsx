@@ -17,33 +17,69 @@ const Servicios = () => {
       {/* Contenido principal */}
       <div className="flex flex-col justify-end flex-grow p-6 lg:p-16">
         <h1 className="text-6xl lg:text-7xl text-white leading-tight mb-3">
-          {language === "EN" ? "We provide solutions /" : language === "ZH" ? "我们提供以下解决方案" : "Brindamos soluciones en /"}
+          {language === "EN"
+            ? "We provide solutions /"
+            : language === "ZH"
+            ? "我们提供以下解决方案"
+            : "Brindamos soluciones en /"}
         </h1>
 
         <div className="space-y-2 items-center">
           <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
             <LiaAddressCard className="mr-2" />
-            {language === "EN" ? "Temporary, Temporary and Permanent Residence" : language === "ZH" ? "临时、暂时和永久居留" : "Residencia Transitoria, Temporaria y Permanente"}
+            {language === "EN"
+              ? "Temporary, Transitory, and Permanent Residence"
+              : language === "ZH"
+              ? "临时、过渡性和永久居留"
+              : "Residencia: Transitoria, Temporaria y Permanente"}
           </p>
           <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
             <LiaAddressCard className="mr-2" />
-            {language === "EN" ? "Provisional and definitive CUIL" : language === "ZH" ? "临时和最终CUIL" : "CUIL provisorio y definitivo"}
+            {language === "EN"
+              ? "Provisional and Permanent CUIL"
+              : language === "ZH"
+              ? "临时和永久CUIL"
+              : "CUIL: Provisorio y Definitivo"}
           </p>
           <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
             <LiaAddressBook className="mr-2" />
-            {language === "EN" ? "Obtaining birth and marriage certificates" : language === "ZH" ? "获取出生和结婚证明" : "Obtención de certificados de nacimiento y matrimonio"}
+            {language === "EN"
+              ? "Birth, marriage, and criminal record certifications"
+              : language === "ZH"
+              ? "出生、结婚及无犯罪记录证明"
+              : "Certificaciones: Actas de nacimiento, matrimonio y antecedentes penales"}
           </p>
           <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
             <LiaAddressBook className="mr-2" />
-            {language === "EN" ? "Criminal record certificate" : language === "ZH" ? "无犯罪记录证明" : "Certificado de antecedentes penales"}
+            {language === "EN"
+              ? "Corporate Migration: Work permits, visas, and document management"
+              : language === "ZH"
+              ? "企业移民：工作许可、签证及文件管理"
+              : "Migraciones Empresariales: Permisos de trabajo, visados y gestión documental"}
           </p>
           <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
             <LiaAddressBook className="mr-2" />
-            {language === "EN" ? "Renure Certificate for companies" : language === "ZH" ? "企业的Renure证书" : "Certificado Renure para empresas"}
+            {language === "EN"
+              ? "Customs Logistics: Temporary imports and exports, transport agent"
+              : language === "ZH"
+              ? "海关物流：临时进出口，运输代理"
+              : "Logística Aduanera: Importaciones y exportaciones temporales, agente de transporte"}
           </p>
           <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
             <LiaAddressBook className="mr-2" />
-            {language === "EN" ? "Migration consulting" : language === "ZH" ? "移民咨询" : "Consultoría migratoria"}
+            {language === "EN"
+              ? "Renure Certification: Advisory and processing for companies"
+              : language === "ZH"
+              ? "Renure证书：企业咨询与办理"
+              : "Certificado Renure: Asesoría y trámite para empresas"}
+          </p>
+          <p className="text-lg lg:text-xl font-color my-1 justify-normal flex items-center">
+            <LiaAddressBook className="mr-2" />
+            {language === "EN"
+              ? "Migration Consulting: Specialized guidance in international mobility"
+              : language === "ZH"
+              ? "移民咨询：专业的国际流动性指导"
+              : "Consultoría Migratoria: Orientación especializada en movilidad internacional"}
           </p>
         </div>
 
@@ -53,7 +89,12 @@ const Servicios = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          * {language === "EN" ? "Contact us" : language === "ZH" ? "联系我们" : "Contactanos"}
+          *{" "}
+          {language === "EN"
+            ? "Contact us"
+            : language === "ZH"
+            ? "联系我们"
+            : "Contactanos"}
         </Link>
       </div>
 

@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import { useLanguageStore } from "@/store/useLanguageStore";
 
-const weChatId = "WeChatID";
+const weChatId = "totalaccess";
 
 const WechatContact = () => {
   const { language, setLanguage } = useLanguageStore();
@@ -60,7 +60,7 @@ const WechatContact = () => {
         {/* Imagen del código QR */}
         <div className="flex justify-center py-2">
           <Image
-            src={"/images/wechat-qr-code.png"}
+            src={"/images/wechat-qr-code.jpeg"}
             alt="WeChat QR Code"
             width={200}
             height={200}
