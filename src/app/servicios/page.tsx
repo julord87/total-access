@@ -17,7 +17,7 @@ const Servicios = () => {
       {/* Contenido principal */}
       <div className="flex flex-col justify-end flex-grow p-6 lg:p-16">
         <h1 className="text-6xl lg:text-7xl text-white leading-tight mb-3">
-          {language === "EN" ? "We provide solutions in /" : language === "ZH" ? "我们提供以下解决方案 /" : "Brindamos soluciones en /"}
+          {language === "EN" ? "We provide solutions /" : language === "ZH" ? "我们提供以下解决方案" : "Brindamos soluciones en /"}
         </h1>
 
         <div className="space-y-2 items-center">

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useLanguageStore } from "@/store/useLanguageStore";
 import localFont from "next/font/local";
 import "./globals.css";
+import Head from "next/head";
 
 // Cargar las fuentes
 const nanumMyeongjoRegular = localFont({
@@ -33,18 +34,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <body
         className={`${nanumMyeongjoRegular.variable} ${nanumMyeongjoBold.variable} ${nanumMyeongjoExtraBold.variable} antialiased`}
       >
         <div className="lg:flex h-screen">
           {/* Contenedor izquierdo para el contenido */}
-          <div className="lg:flex-1 lg:pb-10 lg:m-4">
-            {children}
-          </div>
-          
+          <div className="lg:flex-1 lg:pb-10 lg:m-4">{children}</div>
+
           {/* Contenedor derecho para la imagen de fondo */}
           <div className="relative flex-1">
-            <div className="absolute inset-0 bg-center bg-no-repeat" style={{ backgroundImage: "url('/images/bg.png')" }}></div>
+            <div
+              className="absolute inset-0 bg-center bg-no-repeat"
+              style={{ backgroundImage: "url('/images/bg.png')" }}
+            ></div>
           </div>
         </div>
       </body>
