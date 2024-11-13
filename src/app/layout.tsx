@@ -25,7 +25,7 @@ const nanumMyeongjoExtraBold = localFont({
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const { language, setLanguage } = useLanguageStore();
+  const { language } = useLanguageStore();
 
   useEffect(() => {
     // Configurar el atributo de idioma en el elemento <html> según el idioma del store
