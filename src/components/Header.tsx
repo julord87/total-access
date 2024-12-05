@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
       </Link>
 
       {/* Botón de menú hamburguesa en móviles */}
-      <div className="lg:hidden justify-items-end t">
+      <div className="lg:hidden justify-items-end">
         <button onClick={toggleMenu} aria-label="Toggle menu">
           {isOpen ? (
             <AiOutlineClose className="text-2xl text-white" />
@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
       <nav
         className={`lg:flex lg:space-x-2 xl:space-x-8 font-color ${
           isOpen ? "block justify-items-end" : "hidden"
-        } lg:block absolute lg:static top-16 right-4 w-full md:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
+        } nav lg:block absolute lg:staticrounded-md top-16 right-4 lg:w-full md:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
       >
         <Link href="/nuestra_firma" className="block py-2 lg:inline hover:opacity-75 text-sm">
           {language === "EN" ? "Our Firm" : language === "ZH" ? "我们的公司" : "Nuestra Firma"}
