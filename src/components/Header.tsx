@@ -24,20 +24,20 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
   };
 
   return (
-    <header className="space-x-2 flex md:ml-8 items-center justify-between md:justify-normal p-4">
+    <header className="space-x-2 flex lg:ml-8 items-center justify-between lg:justify-normal p-4">
       {/* Logo */}
       <Link href="/" className="flex">
         <Image
-          src="/images/bg.png"
+          src="/images/logo.png"
           alt="Description"
-          width={40}
-          height={40}
-          className="mr-4 opacity-45"
+          width={60}
+          height={60}
+          className="mr-8 opacity-95"
         />
       </Link>
 
       {/* Botón de menú hamburguesa en móviles */}
-      <div className="md:hidden">
+      <div className="lg:hidden justify-items-end t">
         <button onClick={toggleMenu} aria-label="Toggle menu">
           {isOpen ? (
             <AiOutlineClose className="text-2xl text-white" />
@@ -47,15 +47,12 @@ const Header: React.FC<HeaderProps> = ({ language, setLanguage }) => {
         </button>
       </div>
 
-      {/* Navegación: siempre visible a partir de md */}
+      {/* Navegación: siempre visible a partir de lg */}
       <nav
-        className={`md:flex md:space-x-10 font-color ${
+        className={`lg:flex lg:space-x-2 xl:space-x-8 font-color ${
           isOpen ? "block justify-items-end" : "hidden"
-        } lg:block absolute md:static top-16 right-4 w-full md:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
+        } lg:block absolute lg:static top-16 right-4 w-full md:w-auto lg:bg-transparent p-4 lg:p-0 z-20`}
       >
-        <Link href="/" className="block py-2 lg:inline hover:opacity-75 text-sm">
-          {language === "EN" ? "Home" : language === "ZH" ? "主页" : "Inicio"}
-        </Link>
         <Link href="/nuestra_firma" className="block py-2 lg:inline hover:opacity-75 text-sm">
           {language === "EN" ? "Our Firm" : language === "ZH" ? "我们的公司" : "Nuestra Firma"}
         </Link>

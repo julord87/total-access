@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="relative flex-1">
             <div
               className="absolute inset-0 bg-center bg-no-repeat"
-              style={{ backgroundImage: "url('/images/bg.png')" }}
+              style={{ backgroundImage: "url('/images/bg.png')", opacity: 0.6 }}
             ></div>
           </div>
         </div>
